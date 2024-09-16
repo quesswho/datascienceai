@@ -43,7 +43,7 @@ The result can be viewed in Figure \ref{fig:depenratio}.
 \end{figure}
 
 \subsection*{Task II}
-In this task we calculate the ratio of children, workforce and elderly respectively and plot it from the same data used earlier.
+In this task we calculate the ratio of children, workforce and elderly respectively and plot it using the same data as before.
 The result is show in Figure \ref{fig:frac}.
 
 
@@ -58,22 +58,25 @@ The result is show in Figure \ref{fig:frac}.
 
 \subsection*{Task III}
 Here we discuss the development of the Swedish population by observing Figure \ref{fig:depenratio} and Figure \ref{fig:frac}.
-With advancements within the medical field people tend to live for longer so it is very natural for the fraction of elderly to increase. The fraction of children has decreased as well because of better access to contraceptive devices, higher costs of raising children and drifting societal values towards having smaller families. World War I and II caused both societal and economical changes which is clearly reflected in both figures above.\\
+With advancements within the medical field and improved living conditions, people tend to live longer. It is therefore natural for the fraction of elderly to increase. The fraction of children has decreased because of better access to contraceptive devices, higher costs of raising children and drifting societal values towards having smaller families. World War I and II caused both societal and economical changes which also made it less appealing to have children which is clearly reflected in both figures above roughly in the years 1910-1940.\\
 
 
 \printbibliography
 \appendix
 
-\section*{Problem 1 Code}
+\section*{Code}
 \label{app:code}
 
 \lstset{
-  language=Python,
-  basicstyle=\ttfamily,
-  commentstyle=\color{OliveGreen},
-  keywordstyle=\bfseries\color{Magenta},
-  stringstyle=\color{YellowOrange},
-  numbers=left,
+	language=Python,
+	basicstyle=\ttfamily,
+	commentstyle=\color{OliveGreen},
+	keywordstyle=\bfseries\color{Magenta},
+	stringstyle=\color{YellowOrange},
+	numbers=left,
+	frame=tblr,
+	breaklines=true,
+	postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space},
 }
 \begin{lstlisting}
 import pandas as pd
@@ -126,7 +129,7 @@ plt.grid(True)
 plt.legend()
 plt.gca().xaxis.set_major_locator(plt.MaxNLocator(nbins=10))
 
-plt.show()\\
+plt.show()
 
 \end{lstlisting}
 
