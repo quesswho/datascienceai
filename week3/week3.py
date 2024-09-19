@@ -6,13 +6,13 @@ from sklearn.metrics import accuracy_score, confusion_matrix, classification_rep
 import random
 random.seed(6215)
 
-spam_folder_path = '20021010_spam/spam'
+spam_folder_path = 'spam'
 spam_files = os.listdir(spam_folder_path)
 
-easy_ham_folder_path = "20021010_easy_ham/easy_ham"
+easy_ham_folder_path = "easy_ham"
 easy_ham_files = os.listdir(easy_ham_folder_path)
 
-hard_ham_folder_path = "20021010_hard_ham/hard_ham"
+hard_ham_folder_path = "hard_ham"
 hard_ham_files = os.listdir(hard_ham_folder_path)
 
 all_spam = []
