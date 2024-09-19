@@ -1,4 +1,5 @@
 import os
+from sklearn.feature_extraction.text import CountVectorizer 
 
 
 folder_path = '20021010_spam/spam'
@@ -13,3 +14,5 @@ for file_name in files:
     table.append(f.read())
 
 print(table)
+
+c = CountVectorizer(content = table[0])
