@@ -50,7 +50,7 @@ print(class_report)
 
 
 # Bernoulli Naive Bayesian Classyfier
-binary_vectorizer = CountVectorizer(encoding="latin_1", binary=True)
+binary_vectorizer = CountVectorizer(encoding="latin_1")
 X_train_binary = vectorizer.fit_transform(X_train_easy)
 X_test_binary = vectorizer.transform(X_test_easy)
 clf = BernoulliNB()

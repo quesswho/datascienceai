@@ -32,18 +32,38 @@ We used 50\% of the data as training data. With this training we achieved an acc
 
 
 \section*{Problem 2}
-We began with building onto the code from the previous problem. We used the CountVectorizer function from the scikit-learn library. We then used fit\_transform and transform on the train set and test set respectively. Then, we used the BinomialNB function on the transformed train and test set. Thirdly we used the predict function on the 
-
+Firstly, we began with building onto the code from the previous problem. Secondly, we initialized CountVectorizer from the scikit-learn library. Thirdly, we used fit\_transform and transform on the train set and test set respectively. 
 
 \section*{Problem 3}
+Then, we used the BinomialNB function on the transformed train and test set. Thirdly we used the predict function on the 
 
-\begin{figure}[H]
-  \begin{center}
-    
-    \caption{}
-    \label{scatter2}
-  \end{center}
-\end{figure}
+The performance of the Multinomial Naive Bayes classifier was evaluated using accuracy, precision, recall, and a confusion matrix. The classifier was trained on a dataset containing both spam and ham emails, and the results are as follows:
+
+\textbf{Accuracy}: 95.15\%
+
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{|c|c|c|c|}
+        \hline
+        & Predicted Ham & Predicted Spam & Sum \\
+        \hline
+        Actual Ham & 1281 & 1 & 1282 \\
+        \hline
+        Actual Spam & 73 & 171 & 244 \\
+        \hline
+        Sum & 1354 & 172 & 1526 \\
+        \hline
+    \end{tabular}
+    \caption{Confusion Matrix}
+\end{table}
+
+\textbf{Precision} (ham): 0.95 \\
+\textbf{Precision} (spam): 0.99 \\
+\textbf{Recall} (ham): 1.00 \\
+\textbf{Recall} (spam): 0.70
+
+The classifier demonstrates high accuracy, with a precision of 0.99 for spam detection, although the recall for spam is somewhat lower, indicating occasional missed spam emails.
+
 
 \printbibliography
 \appendix
