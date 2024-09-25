@@ -50,7 +50,7 @@ print(class_report)
 
 
 # Bernoulli Naive Bayesian Classyfier
-binary_vectorizer = CountVectorizer(encoding="latin_1")
+binary_vectorizer = CountVectorizer(encoding="latin_1", binary=True)
 X_train_binary = vectorizer.fit_transform(X_train_easy)
 X_test_binary = vectorizer.transform(X_test_easy)
 clf = BernoulliNB()
@@ -66,3 +66,51 @@ print("\nConfusion Matrix:")
 print(conf_matrix)
 print("\nClassification Report:")
 print(class_report)
+
+
+# Split dataset (Spam vs Hard Ham)
+X_train_hard, X_test_hard, y_train_hard, y_test_hard = train_test_split(
+    all_hard_ham + all_spam, 
+    [0] * len(all_hard_ham) + [1] * len(all_spam), 
+    test_size=0.5, random_state=42
+)
+
+# Multinomial Naive Bayes Classifier 
+vectorizer = CountVectorizer(encoding="latin_1")
+X_train_counts = vectorizer.fit_transform(X_train_hard)
+X_test_counts = vectorizer.transform(X_test_hard)
+clf_multinomial = MultinomialNB()
+clf_multinomial.fit(X_train_counts, y_train_hard)
+y_pred_multinomial = clf_multinomial.predict(X_test_counts)
+
+# Evaluation for Multinomial NB
+accuracy_multinomial = accuracy_score(y_test_hard, y_pred_multinomial)
+conf_matrix_multinomial = confusion_matrix(y_test_hard, y_pred_multinomial)
+class_report_multinomial = classification_report(y_test_hard, y_pred_multinomial)
+
+print(f"Multinomial Naive Bayes Accuracy: {accuracy_multinomial * 100:.2f}%")
+print("\nConfusion Matrix (Multinomial Naive Bayes):")
+print(conf_matrix_multinomial)
+print("\nClassification Report (Multinomial Naive Bayes):")
+print(class_report_multinomial)
+
+
+# Bernoulli Naive Bayes Classifier (binary)
+binary_vectorizer = CountVectorizer(encoding="latin_1", binary=True)
+X_train_binary = binary_vectorizer.fit_transform(X_train_hard)
+X_test_binary = binary_vectorizer.transform(X_test_hard)
+clf_bernoulli = BernoulliNB()
+clf_bernoulli.fit(X_train_binary, y_train_hard)
+y_pred_bernoulli = clf_bernoulli.predict(X_test_binary)
+
+# Evaluation for Bernoulli NB
+accuracy_bernoulli = accuracy_score(y_test_hard, y_pred_bernoulli)
+conf_matrix_bernoulli = confusion_matrix(y_test_hard, y_pred_bernoulli)
+class_report_bernoulli = classification_report(y_test_hard, y_pred_bernoulli)
+
+# Output the results
+print(f"\nBernoulli Naive Bayes Accuracy: {accuracy_bernoulli * 100:.2f}%")
+print("\nConfusion Matrix (Bernoulli Naive Bayes):")
+print(conf_matrix_bernoulli)
+print("\nClassification Report (Bernoulli Naive Bayes):")
+print(class_report_bernoulli)
