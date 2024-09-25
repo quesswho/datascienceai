@@ -39,7 +39,7 @@ Then, we used the BinomialNB function on the transformed train and test set. Thi
 
 The performance of the Multinomial Naive Bayes classifier was evaluated using accuracy, precision, recall, and a confusion matrix. The classifier was trained on a dataset containing both spam and ham emails, and the results are as follows:
 
-\textbf{Accuracy}: 95.15\%
+\subsection*{MultinomialNB}
 
 \begin{table}[h!]
     \centering
@@ -54,16 +54,43 @@ The performance of the Multinomial Naive Bayes classifier was evaluated using ac
         Sum & 1354 & 172 & 1526 \\
         \hline
     \end{tabular}
-    \caption{Confusion Matrix}
+    \caption{Confusion Matrix for MultinomialNB}
+    \label{mNB}
 \end{table}
 
+
+See table \ref{mNB}\\
 \textbf{Precision} (ham): 0.95 \\
 \textbf{Precision} (spam): 0.99 \\
 \textbf{Recall} (ham): 1.00 \\
 \textbf{Recall} (spam): 0.70
 
+\subsection*{BernoulliNB}
+\begin{table}[h!]
+	\centering
+	\begin{tabular}{|c|c|c|c|}
+		\hline
+		& Predicted Ham & Predicted Spam & Sum \\
+		\hline
+		Actual Ham & 1280 & 2 & 1282 \\
+		\hline
+		Actual Spam & 180 & 64 & 244 \\
+		\hline
+		Sum & 1460 & 68 & 1528 \\
+		\hline
+	\end{tabular}
+	\caption{Confusion Matrix for BernoulliNB}
+	\label{bNB}
+\end{table}
+\noindent
+See table \ref{bNB}\\
+\textbf{Precision} (ham): 0.88 \\
+\textbf{Precision} (spam): 0.97 \\
+\textbf{Recall} (ham): 1.00 \\
+\textbf{Recall} (spam): 0.26\\\\
 The classifier demonstrates high accuracy, with a precision of 0.99 for spam detection, although the recall for spam is somewhat lower, indicating occasional missed spam emails.
 
+\section*{Problem 4}
 
 \printbibliography
 \appendix
