@@ -28,15 +28,20 @@
 We verify that the images are 28x28 pixels grayscales and plot a few of the images.
 \begin{figure}[H]
 	\begin{center}
-		\includegraphics[scale=0.25]{datasets.png}
+		\includegraphics[scale=0.4]{datasets.png}
 		\caption{Various images from the datasets}
 		\label{hist}
 	\end{center}
 \end{figure}
 
 \section*{Problem 2}
+<<<<<<< HEAD
 We train the data with a single hidden layer. We put the hidden layer size as 128 and the learning rate for the SGD as 0.01. The accuracy over 10 epochs is shown in table \ref{tab}.
 \begin{table}[h!]
+=======
+We train the data with a single hidden layer. We put the hidden layer size as 128 and the learning rate for SGD as 0.01. The accuracy over 10 epochs is shown in table \ref{tab}.
+\begin{table}[H]
+>>>>>>> 271b675be1da9042bd15973ce93b30766e74781b
 	\centering
 	
 	\begin{tabular}{|c|c|}
@@ -69,59 +74,111 @@ We train the data with a single hidden layer. We put the hidden layer size as 12
 \end{table}
 
 \section*{Problem 3}
+For this problem we used $\text{weight decay}  = 0.0001$ and
+$\text{learning rate} = 0.04$. The accuracies are displayed in table \ref{tab2}. The accuracy seems to plateau at around 98\%, which is also what we were supposed to reach.
 
-\subsection*{MultinomialNB}
-
-\begin{table}[h!]
-    \centering
-    \begin{tabular}{|c|c|c|c|}
-        \hline
-        & Predicted Ham & Predicted Spam & Sum \\
-        \hline
-        Actual Ham & 1281 & 1 & 1282 \\
-        \hline
-        Actual Spam & 73 & 171 & 244 \\
-        \hline
-        Sum & 1354 & 172 & 1526 \\
-        \hline
-    \end{tabular}
-    \caption{Confusion Matrix for MultinomialNB}
-    \label{mNB}
-\end{table}
-
-
-See table \ref{mNB}\\
-\textbf{Precision} (ham): 0.95 \\
-\textbf{Precision} (spam): 0.99 \\
-\textbf{Recall} (ham): 1.00 \\
-\textbf{Recall} (spam): 0.70
-
-\subsection*{BernoulliNB}
-\begin{table}[h!]
+\begin{table}[H]
 	\centering
-	\begin{tabular}{|c|c|c|c|}
+	\begin{tabular}{|c|c|}
 		\hline
-		& Predicted Ham & Predicted Spam & Sum \\
+		Epoch & Accuracy \\
 		\hline
-		Actual Ham & 1280 & 2 & 1282 \\
+		1 & 90.61\% \\
 		\hline
-		Actual Spam & 180 & 64 & 244 \\
-		\hline
-		Sum & 1460 & 68 & 1528 \\
+		2 & 94.65\%\\
+		\hline 
+		3 & 94.68\%\\
+		\hline 
+		4 & 95.81\%\\
+		\hline 
+		5 & 96.90\%\\
+		\hline 
+		6 & 94.19\%\\
+		\hline 
+		7 & 97.10\%\\
+		\hline 
+		8 & 97.29\%\\
+		\hline 
+		9 & 97.29\%\\
+		\hline 
+		10 & 97.19\%\\
+		\hline 
+		11 & 97.85\%\\
+		\hline 
+		12 & 97.76\%\\
+		\hline 
+		13 & 98.05\%\\
+		\hline 
+		14 & 97.92\%\\
+		\hline 
+		15 & 97.90\%\\
+		\hline 
+		16 & 97.21\%\\
+		\hline 
+		17 & 98.04\%\\
+		\hline 
+        18 & 98.12\%\\
+		\hline 19 & 98.10\%\\
+		\hline 20 & 98.07\%\\
+		\hline 21 & 98.13\%\\
+		\hline 22 & 98.02\%\\
+		\hline 23 & 98.11\%\\
+		\hline 24 & 97.80\%\\
+		\hline 25 & 98.20\%\\
+		\hline 26 & 98.23\%\\
+		\hline 27 & 98.17\%\\
+		\hline 28 & 98.21\%\\
+		\hline 29 & 98.22\%\\
+		\hline 30 & 98.24\%\\
+		\hline 31 & 98.29\%\\
+		\hline 32 & 98.22\%\\
+		\hline 33 & 98.22\%\\
+		\hline 34 & 98.28\%\\
+		\hline 35 & 98.30\%\\
+		\hline 36 & 98.30\%\\
+		\hline 
+		37 & 98.30\%\\
+		\hline 
+		38 & 98.36\%\\
+		\hline 
+		39 & 98.28\%\\
+		\hline 
+		40 & 98.34\%\\
 		\hline
 	\end{tabular}
-	\caption{Confusion Matrix for BernoulliNB}
-	\label{bNB}
+	\caption{Accuracy of the test data over 40 epochs with two hidden layers. }
+	\label{tab2}
 \end{table}
-\noindent
-See table \ref{bNB}\\
-\textbf{Precision} (ham): 0.88 \\
-\textbf{Precision} (spam): 0.97 \\
-\textbf{Recall} (ham): 1.00 \\
-\textbf{Recall} (spam): 0.26\\\\
-The classifier demonstrates high accuracy, with a precision of 0.99 for spam detection, although the recall for spam is somewhat lower, indicating occasional missed spam emails.
-
 \section*{Problem 4}
+In this model we first have a convolution layer with 32 filters and 3x3 kernel, and max pooling with a 2x2 window.
+In the second layer we have 64 filters with a 3x3 kernel and a 2x2 max pooling. Finally we have a hidden layer with 128 neurons. In between every layer we use ReLU activation which adds non-linearity to the model. We also used the same weight decay and learning rate as in problem 3. The accuracy for 40 epochs is shown in table \ref{tab3}. We note that the accuracies plateau at around $99.1\%$ meaning that we have likely reached the best accuracy for the model, and running it for more epochs would be a waste.
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|c|c|}
+	\hline
+	Epoch & Accuracy \\
+	\hline1 & 97.34\% \\
+	\hline2 & 98.16\% \\
+	\hline3 & 98.50\% \\
+	\hline4 & 98.29\% \\
+	\hline5 & 98.80\% \\
+	\hline6 & 98.61\% \\
+	\hline7 & 98.88\% \\
+	\hline8 & 97.84\% \\
+	\hline9 & 98.76\% \\
+	\hline10 & 99.08\%\\
+	\hline11 & 99.17\%\\
+	\hline12 & 99.12\%\\
+	\hline13 & 99.04\%\\
+	\hline\vdots & \vdots\\
+	\hline37 & 99.10\%\\
+	\hline38 & 99.11\%\\
+	\hline39 & 99.11\%\\
+	\hline40 & 99.15\%\\
+	\hline\end{tabular}
+	\caption{Accuracy of the test data over 40 epochs with a convolution NN. }
+	\label{tab3}
+\end{table}
 
 \printbibliography
 \appendix
@@ -141,7 +198,103 @@ The classifier demonstrates high accuracy, with a precision of 0.99 for spam det
 	postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space},
 }
 \begin{lstlisting}
+import torch
+import torch.nn as nn
+import torch.optim as optim
+import torchvision.transforms as transforms
+import torchvision.datasets as datasets
+from torch.utils.data import DataLoader
 
+input_size = 28 * 28
+hidden_size = 128
+output_size = 10
+weight_decay = 0.0001
+learning_rate = 0.04
+
+transform = transforms.Compose([
+    transforms.ToTensor(),
+    transforms.Normalize((0.5,), (0.5,))  # Normalize to [-1, 1]
+])
+
+train_dataset = datasets.MNIST(root='./mnist_data', train=True, download=True, transform=transform)
+test_dataset = datasets.MNIST(root='./mnist_data', train=False, download=True, transform=transform)
+
+train_loader = DataLoader(train_dataset, batch_size=64, shuffle=True)
+test_loader = DataLoader(test_dataset, batch_size=64, shuffle=False)
+
+
+def train_model(model, train_loader, test_loader, num_epochs):
+    criterion = nn.CrossEntropyLoss()
+    optimizer = optim.SGD(model.parameters(), lr=learning_rate, weight_decay=weight_decay)
+
+    for epoch in range(1, num_epochs + 1):
+        model.train()
+        for batch_idx, (data, target) in enumerate(train_loader):
+            optimizer.zero_grad()
+            #output = model(data.view(-1, 28*28))  # Cant do this with model3
+            output = model(data)
+            loss = criterion(output, target)
+            loss.backward()
+            optimizer.step()
+        
+        test_loss, accuracy = validate(model, test_loader, criterion)
+        print(f'{epoch} & {accuracy:.2f}\\%')
+    
+    return model
+
+def validate(model, test_loader, criterion):
+    model.eval()
+    test_loss = 0
+    correct = 0
+    with torch.no_grad(): # disable gradient calculation for validation
+        for data, target in test_loader:
+            #output = model(data.view(-1, 28*28)) # Cant do this with model3
+            output = model(data)
+            test_loss += criterion(output, target).item()
+            pred = output.argmax(dim=1, keepdim=True) 
+            correct += pred.eq(target.view_as(pred)).sum().item()
+
+    test_loss /= len(test_loader.dataset)
+    accuracy = 100.0 * correct / len(test_loader.dataset)
+    return test_loss, accuracy
+
+
+model1 = nn.Sequential(
+    nn.Linear(28*28, hidden_size),
+    nn.ReLU(),
+    nn.Linear(hidden_size, output_size)
+)
+
+
+#train_model(model1, train_loader, test_loader, num_epochs=10)
+
+model2 = nn.Sequential(
+    nn.Linear(28*28, 500),
+    nn.ReLU(),
+    nn.Linear(500, 300),
+    nn.ReLU(),
+    nn.Linear(300, 10),
+)
+
+#train_model(model2, train_loader, test_loader, num_epochs=40)
+
+model3 = nn.Sequential(
+    nn.Conv2d(in_channels=1, out_channels=32, kernel_size=3, stride=1, padding=1),
+    nn.ReLU(),
+    nn.MaxPool2d(kernel_size=2, stride=2),
+
+    nn.Conv2d(in_channels=32, out_channels=64, kernel_size=3, stride=1, padding=1),
+    nn.ReLU(),
+    nn.MaxPool2d(kernel_size=2, stride=2),
+
+    nn.Flatten(),
+    nn.Linear(64 * 7 * 7, 128),
+    nn.ReLU(),
+
+    nn.Linear(128, 10)
+)
+
+train_model(model3, train_loader, test_loader, num_epochs=40)
 \end{lstlisting}
 
 \end{document}

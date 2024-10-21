@@ -5,15 +5,12 @@ import torchvision.transforms as transforms
 import torchvision.datasets as datasets
 from torch.utils.data import DataLoader
 
-# Hyperparameters
-input_size = 28 * 28  # 784 for MNIST images
-hidden_size = 128     # Size of the hidden layer
-output_size = 10      # 10 classes for digits 0-9
-learning_rate = 0.01  # Learning rate for SGD
-num_epochs = 10       # Number of epochs
-batch_size = 64       # Batch size
+input_size = 28 * 28
+hidden_size = 128
+output_size = 10
+weight_decay = 0.0001
+learning_rate = 0.04
 
-# Load the MNIST dataset
 transform = transforms.Compose([
     transforms.ToTensor(),
     transforms.Normalize((0.5,), (0.5,))  # Normalize to [-1, 1]
@@ -22,67 +19,79 @@ transform = transforms.Compose([
 train_dataset = datasets.MNIST(root='./mnist_data', train=True, download=True, transform=transform)
 test_dataset = datasets.MNIST(root='./mnist_data', train=False, download=True, transform=transform)
 
-train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True)
-test_loader = DataLoader(test_dataset, batch_size=batch_size, shuffle=False)
+train_loader = DataLoader(train_dataset, batch_size=64, shuffle=True)
+test_loader = DataLoader(test_dataset, batch_size=64, shuffle=False)
 
-# Initialize weights and biases for the layers
-W1 = torch.randn(input_size, hidden_size, requires_grad=True)  # Weight for input to hidden layer
-b1 = torch.zeros(hidden_size, requires_grad=True)              # Bias for hidden layer
-W2 = torch.randn(hidden_size, output_size, requires_grad=True) # Weight for hidden to output layer
-b2 = torch.zeros(output_size, requires_grad=True)              # Bias for output layer
 
-# Loss function
-criterion = nn.CrossEntropyLoss()
+def train_model(model, train_loader, test_loader, num_epochs):
+    criterion = nn.CrossEntropyLoss()
+    optimizer = optim.SGD(model.parameters(), lr=learning_rate, weight_decay=weight_decay)
 
-# Use SGD optimizer
-optimizer = optim.SGD([W1, b1, W2, b2], lr=learning_rate)
+    for epoch in range(1, num_epochs + 1):
+        model.train()
+        for batch_idx, (data, target) in enumerate(train_loader):
+            optimizer.zero_grad()
+            #output = model(data.view(-1, 28*28))  # Cant do this with model3
+            output = model(data)
+            loss = criterion(output, target)
+            loss.backward()
+            optimizer.step()
+        
+        test_loss, accuracy = validate(model, test_loader, criterion)
+        print(f'{epoch} & {accuracy:.2f}\\%')
+    
+    return model
 
-# Training loop
-for epoch in range(num_epochs):
-    for images, labels in train_loader:
-        images = images.view(-1, input_size)  # Flatten the images
-
-        # Forward pass
-        hidden_layer = torch.matmul(images, W1) + b1  # Linear transformation
-        hidden_layer = torch.relu(hidden_layer)       # ReLU activation
-        outputs = torch.matmul(hidden_layer, W2) + b2 # Linear transformation to output layer
-
-        # Compute loss
-        loss = criterion(outputs, labels)
-
-        # Backward and optimize
-        optimizer.zero_grad()  # Zero the gradients
-        loss.backward()        # Backpropagation
-        optimizer.step()       # Update weights and biases
-
-    # Validation accuracy
+def validate(model, test_loader, criterion):
+    model.eval()
+    test_loss = 0
     correct = 0
-    total = 0
-    with torch.no_grad():
-        for images, labels in test_loader:
-            images = images.view(-1, input_size)
-            hidden_layer = torch.matmul(images, W1) + b1
-            hidden_layer = torch.relu(hidden_layer)
-            outputs = torch.matmul(hidden_layer, W2) + b2
-            _, predicted = torch.max(outputs.data, 1)
-            total += labels.size(0)
-            correct += (predicted == labels).sum().item()
+    with torch.no_grad(): # disable gradient calculation for validation
+        for data, target in test_loader:
+            #output = model(data.view(-1, 28*28)) # Cant do this with model3
+            output = model(data)
+            test_loss += criterion(output, target).item()
+            pred = output.argmax(dim=1, keepdim=True) 
+            correct += pred.eq(target.view_as(pred)).sum().item()
 
-    accuracy = correct / total
-    print(f'Epoch [{epoch + 1}/{num_epochs}], Loss: {loss.item():.4f}, Test Accuracy: {accuracy:.4f}')
+    test_loss /= len(test_loader.dataset)
+    accuracy = 100.0 * correct / len(test_loader.dataset)
+    return test_loss, accuracy
 
-# Final evaluation on test set
-correct = 0
-total = 0
-with torch.no_grad():
-    for images, labels in test_loader:
-        images = images.view(-1, input_size)
-        hidden_layer = torch.matmul(images, W1) + b1
-        hidden_layer = torch.relu(hidden_layer)
-        outputs = torch.matmul(hidden_layer, W2) + b2
-        _, predicted = torch.max(outputs.data, 1)
-        total += labels.size(0)
-        correct += (predicted == labels).sum().item()
 
-final_accuracy = correct / total
-print(f'Final Test Accuracy: {final_accuracy:.4f}')
+model1 = nn.Sequential(
+    nn.Linear(28*28, hidden_size),
+    nn.ReLU(),
+    nn.Linear(hidden_size, output_size)
+)
+
+
+#train_model(model1, train_loader, test_loader, num_epochs=10)
+
+model2 = nn.Sequential(
+    nn.Linear(28*28, 500),
+    nn.ReLU(),
+    nn.Linear(500, 300),
+    nn.ReLU(),
+    nn.Linear(300, 10),
+)
+
+#train_model(model2, train_loader, test_loader, num_epochs=40)
+
+model3 = nn.Sequential(
+    nn.Conv2d(in_channels=1, out_channels=32, kernel_size=3, stride=1, padding=1),
+    nn.ReLU(),
+    nn.MaxPool2d(kernel_size=2, stride=2),
+
+    nn.Conv2d(in_channels=32, out_channels=64, kernel_size=3, stride=1, padding=1),
+    nn.ReLU(),
+    nn.MaxPool2d(kernel_size=2, stride=2),
+
+    nn.Flatten(),
+    nn.Linear(64 * 7 * 7, 128),
+    nn.ReLU(),
+
+    nn.Linear(128, 10)
+)
+
+train_model(model3, train_loader, test_loader, num_epochs=40)
