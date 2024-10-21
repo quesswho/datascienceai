@@ -1,0 +1,83 @@
+\documentclass[a4paper]{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{hyperref}
+\usepackage{biblatex}
+\usepackage{enumerate}
+\usepackage{graphicx}
+\usepackage{stmaryrd}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{listings}
+\usepackage{float}
+\usepackage{enumitem}
+\usepackage{calc}
+\addbibresource{refs.bib}
+
+
+
+
+\newcommand{\enum}[1]{\begin{enumerate}[labelsep=0.3cm,labelwidth=\widthof{\ref{last-item}}, itemindent=0em,leftmargin=!, label=(\roman*)]#1 \end{enumerate}}
+\newcommand{\enuma}[1]{\begin{enumerate}[labelsep=0.3cm,labelindent=0pt,itemindent=0em,labelwidth=\widthof{\ref{last-item}}, label=(\alph*)]#1 \end{enumerate}}
+
+\begin{document}
+
+\author{
+  Sebastian Miles \\
+  \href{mailto:miless@chalmers.se}{miless@chalmers.se}
+  \and
+  Olle Lapidus \\
+  \href{mailto:ollelap@chalmers.se}{ollelap@chalmers.se}
+}
+\title{DAT565/DIT407 Assignment 7}
+\date{2024-10-21}
+
+\maketitle
+\section*{Task 1}
+For this assignment we chose GPT-4o. Unfortunately we were not able to find GPT-3.5 as it seems to be removed from the website.
+
+\section*{Task 2}
+\enuma {
+\item We began by asking it to solve a numerical problem.\\
+To GPT: "Can you approximate $\ln(6215)$".\\
+The chatbot replied with a correct answer $\ln(6215)\approx 8.734721$. It also provided a python script which GPT used to get the correct answer.
+Our next question was to limit GPT so as not to use any kind of code execution and on a different tab so that it would not remember the answer.\\
+To GPT: "Can you approximate ln(6215) without using any kind of code execution"\\
+The chatbot cleverly used logarithmic laws and came up with the expression $\ln(6.215)+3\ln(10)$. From here $\ln(10)$ has a well known approximation and $\ln(6.215)$ was approximated to $\approx 1.827$ which is correct. Finally, the bot ended up with the approximation $\ln(6215)\approx 8.73$.\\
+It seemed as though the problem was too easy. We ask it a tougher question.\\
+To GPT: "Can you approximate $\int_1^{6215} ln(x)dx$"\\
+The chat bot follows up with integrating by parts and getting the correct expression
+$$I=x\ln(x)\Big\vert_1^{6215}-\int_1^{6215}1dx.$$
+And after some more calculation it yields
+$\int_1^[6215]ln(x)dx\approx 48038$. However, using integral-calculator.com to approximate the integral numerically, we find that $\int_1^[6215]ln(x)dx\approx 48072.3$.
+Thus, the chatbot answered incorrectly.
+\item In the same calculation provided by the bot, the bot calculates $6215\cdot8.73=54251.95$, which is incorrect, and this is likely what caused the final answer to be wrong. 
+\item It was not necessarily hard, however, it was harder than expected. We thought the bot would fail at the first question. With the newly introduced code execution feature for gpt, the chatbot can approximate through code instead of with the ai model. 
+\item The chatbot has a probabilistic approach. When generating a text, the chatbot predicts the probability distribution of the next word in the sentence. For example given the sequence of words "The sky is", the probability for the word "blue" is going to be high. But with the case for calculating numbers this is not a very good approach since there is a distribution of numbers for which it will answer. In the case for $6215\cdot8.73$ it guesses a number that it could be, not actually calculating what it exactly is.
+}
+\section*{Task 3}
+
+
+\printbibliography
+\appendix
+
+\section*{Code}
+\label{app:excode}
+
+\lstset{
+	language=Python,
+	basicstyle=\ttfamily,
+	commentstyle=\color{OliveGreen},
+	keywordstyle=\bfseries\color{Magenta},
+	stringstyle=\color{YellowOrange},
+	numbers=left,
+	frame=tblr,
+	breaklines=true,
+	postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space},
+}
+\begin{lstlisting}
+
+\end{lstlisting}
+
+\end{document}
