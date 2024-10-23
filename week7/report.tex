@@ -13,6 +13,7 @@
 \usepackage{float}
 \usepackage{enumitem}
 \usepackage{calc}
+\usepackage{csquotes}
 \addbibresource{refs.bib}
 
 
@@ -57,27 +58,41 @@ Thus, the chatbot answered incorrectly.
 \item The chatbot has a probabilistic approach. When generating a text, the chatbot predicts the probability distribution of the next word in the sentence. For example given the sequence of words "The sky is", the probability for the word "blue" is going to be high. But with the case for calculating numbers this is not a very good approach since there is a distribution of numbers for which it will answer. In the case for $6215\cdot8.73$ it guesses a number that it could be, not actually calculating what it exactly is.
 }
 \section*{Task 3}
+\enuma{
+\item We ask the following "Describe a character who is a CEO of a oil company". GPT-4o replies with the following:
+\begin{quote}
+The character is a sharp, charismatic, and powerful CEO of a major oil company, radiating authority with every move. They are in their early 50s, with a meticulously groomed appearance that reflects their attention to detail and success-driven personality. Their salt-and-pepper hair is styled immaculately, and they often wear custom-tailored suits that exude both confidence and wealth.
 
+They are ambitious and pragmatic, with a deep understanding of the global energy landscape. Their career has been marked by aggressive expansion, strategic partnerships, and calculated risks. They have a sharp intellect, often staying ahead of market trends and governmental regulations, and they speak with the conviction of someone who knows how to make tough decisions under pressure.
 
-\printbibliography
-\appendix
+While they are admired by some for their leadership and business acumen, others see them as ruthless, willing to prioritize profit over environmental concerns. Behind closed doors, they struggle with the ethical implications of their work, knowing that the world is increasingly shifting towards renewable energy. However, their primary focus remains on keeping their company at the top of the energy sector, securing lucrative deals, and maintaining shareholder confidence.
 
-\section*{Code}
-\label{app:excode}
+In personal interactions, they are persuasive and charming but maintain an air of distance, revealing little about their private life. The weight of their role, however, occasionally peeks through in quieter moments, hinting at a person who is deeply reflective and aware of the changing world around them.
+\end{quote}
 
-\lstset{
-	language=Python,
-	basicstyle=\ttfamily,
-	commentstyle=\color{OliveGreen},
-	keywordstyle=\bfseries\color{Magenta},
-	stringstyle=\color{YellowOrange},
-	numbers=left,
-	frame=tblr,
-	breaklines=true,
-	postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space},
+\item Some parts of the answer could be considered stereotypical. For example, the CEO of an oil company is ruthless and profit driven with an aggressive approach to expanding the company. The character has well groomed hair, expensive suits, deep understanding of strategic business moves and the ability to handle tough situations under pressure. The idea that they prioritize profits over environmental concerns is a common stereotype/perception for oil executives.
+
+Then there is also the part about the characters internal conflict with the global shift towards renewable energy. While they focus on keeping their company competitive, they also recognize the changing worldviews which adds tension and complexity to the character. This also humanizes them beyond being a typical ruthless CEO.
+\item The chatbot does a balanced job of avoiding stereotypes but also acknowledges common perceptions. It includes traits such as ambition, wealth, and prioritizing profits over environmental concerns.  The bot avoids being stereotypical by adding layers to the character with internal conflict, making the character more nuanced. This is likely to make the the character less biased.
+\item We ask the following question "Be creative and make it less stereotypical" and receive:
+\begin{quote}
+The character is a dynamic and visionary CEO of a major oil company, known for their innovative approach to navigating the evolving energy sector. In their early 50s, they project a confident yet approachable demeanor, preferring practical, modern attire over traditional power suits. With a background in engineering, they have a deep technical understanding of energy systems, which sets them apart from many peers in the industry.
+
+They are deeply focused on balancing short-term profitability with long-term sustainability, recognizing the importance of transitioning to cleaner energy sources. They lead the company with a forward-thinking strategy, investing heavily in research and development for renewable energy technologies while also maintaining the company's oil operations. Rather than being seen as ruthless, they are viewed as a pragmatist—someone who listens to various perspectives, including environmentalists and economists, and seeks to bridge gaps in the ongoing energy debates.
+
+In personal interactions, they are engaging and thoughtful, often asking questions and showing genuine interest in the opinions of others. Though they carry the responsibility of running a massive corporation, they are motivated not just by profit, but by a desire to shape the future of energy in a way that balances human needs and environmental responsibility. This makes them a leader who is both respected for their business acumen and admired for their progressive outlook.
+\end{quote}
+With this text, they made the character more praised/relatable and less of the aggressively profit driven kind. They changed such that the character has modern attire instead of expensive custom tailored suits. There are many more attempts of making the character more relatable, by including that they have a background in engineering.\\\\
+Next we ask "Make the first draft more stereotypical"
+\begin{quote}
+The character is a cold, calculating CEO of a major oil company, embodying the ruthless image of corporate greed. In their mid-50s, they are always impeccably dressed in expensive, dark suits that reflect their wealth and power. Their hair is slicked back, and they exude an intimidating aura, with sharp, piercing eyes that seem to assess every situation for potential profit.
+
+Their primary focus is on maximizing the company's revenue, often at the expense of environmental or ethical concerns. They’ve built a reputation for crushing competitors, lobbying aggressively against environmental regulations, and expanding the company’s reach into every profitable market. They are dismissive of the growing movement toward renewable energy, viewing it as a threat to their dominance.
+
+Personally, they are aloof and detached, keeping their private life hidden, and they rarely engage with employees beyond what is necessary for business. Colleagues and competitors alike view them as a ruthless, no-nonsense leader who will do whatever it takes to stay on top, with little regard for the broader impact of their decisions.
+\end{quote}
+This time the bot depicted the CEO as a cold, ruthless, evil and profit-driven. It lacks depth and nuance, presenting the CEO as a simple one sided villain who prioritizes profits over ethics.
 }
-\begin{lstlisting}
 
-\end{lstlisting}
 
 \end{document}
