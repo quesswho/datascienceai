@@ -25,23 +25,27 @@
 
 \maketitle
 \section*{Problem 1}
-We verify that the images are 28x28 pixels grayscales and plot a few of the images.
+We verify that the images are 28x28 pixels grayscales and plot some images from the train dataset and some from the test dataset. See figure \ref{hist} and \ref{test}.
 \begin{figure}[H]
 	\begin{center}
 		\includegraphics[scale=0.4]{datasets.png}
-		\caption{Various images from the datasets}
+		\caption{Various images from the train dataset}
 		\label{hist}
 	\end{center}
 \end{figure}
 
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[scale=0.4]{test.png}
+		\caption{Various images from the test dataset}
+		\label{test}
+	\end{center}
+\end{figure}
+
 \section*{Problem 2}
-<<<<<<< HEAD
 We train the data with a single hidden layer. We put the hidden layer size as 128 and the learning rate for the SGD as 0.01. The accuracy over 10 epochs is shown in table \ref{tab}.
 \begin{table}[h!]
-=======
-We train the data with a single hidden layer. We put the hidden layer size as 128 and the learning rate for SGD as 0.01. The accuracy over 10 epochs is shown in table \ref{tab}.
-\begin{table}[H]
->>>>>>> 271b675be1da9042bd15973ce93b30766e74781b
+
 	\centering
 	
 	\begin{tabular}{|c|c|}
@@ -151,7 +155,7 @@ $\text{learning rate} = 0.04$. The accuracies are displayed in table \ref{tab2}.
 \end{table}
 \section*{Problem 4}
 In this model we first have a convolution layer with 32 filters and 3x3 kernel, and max pooling with a 2x2 window.
-In the second layer we have 64 filters with a 3x3 kernel and a 2x2 max pooling. Finally we have a hidden layer with 128 neurons. In between every layer we use ReLU activation which adds non-linearity to the model. We also used the same weight decay and learning rate as in problem 3. The accuracy for 40 epochs is shown in table \ref{tab3}. We note that the accuracies plateau at around $99.1\%$ meaning that we have likely reached the best accuracy for the model, and running it for more epochs would be a waste.
+In the second layer we have 64 filters with a 3x3 kernel and a 2x2 max pooling. Finally we have a hidden layer with 128 neurons. In between every layer we use ReLU activation which adds non-linearity to the model. We also used the same weight decay and learning rate as in problem 3. The accuracy for 40 epochs is shown in table \ref{tab3}. We note that the accuracies plateau at around $99.1\%$ meaning that we have likely reached the best accuracy for the model, and running it for more epochs would be a waste. The $\vdots$ implies that the data continued roughly in the range $99\%$ to $99.2\%$.
 \begin{table}[H]
 	\centering
 	\begin{tabular}{|c|c|}

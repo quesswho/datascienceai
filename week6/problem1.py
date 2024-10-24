@@ -35,6 +35,11 @@ images, labels = next(iter(train_loader))
 # Show images from the training set
 show_images(images.numpy(), labels.numpy())
 
+images, labels = next(iter(test_loader))
+
+# Show images from the test set
+show_images(images.numpy(), labels.numpy())
+
 # Verify the dimensions and normalization
 print(f"Image shape: {images.shape}")  # Should be [64, 1, 28, 28]
 print(f"Pixel value range: [{images.min().item()}, {images.max().item()}]")  # Should be around [-1, 1]

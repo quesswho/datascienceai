@@ -1,0 +1,98 @@
+\documentclass[a4paper]{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{hyperref}
+
+\usepackage{enumerate}
+\usepackage{graphicx}
+\usepackage{stmaryrd}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{listings}
+\usepackage{float}
+\usepackage{enumitem}
+\usepackage{calc}
+\usepackage{csquotes}
+
+\usepackage[backend=biber]{biblatex}
+\addbibresource{refs.bib}
+
+
+
+
+\newcommand{\enum}[1]{\begin{enumerate}[labelsep=0.3cm,labelwidth=\widthof{\ref{last-item}}, itemindent=0em,leftmargin=!, label=\arabic*).]#1 \end{enumerate}}
+\newcommand{\enuma}[1]{\begin{enumerate}[labelsep=0.3cm,labelindent=0pt,itemindent=0em,labelwidth=\widthof{\ref{last-item}}, label=(\alph*)]#1 \end{enumerate}}
+
+
+\begin{document}
+
+\author{
+  Sebastian Miles \\
+  \href{mailto:miless@chalmers.se}{miless@chalmers.se}
+  \and
+  Olle Lapidus \\
+  \href{mailto:ollelap@chalmers.se}{ollelap@chalmers.se}
+}
+\title{DAT565/DIT407 Assignment 8}
+\date{2024-10-24}
+
+\maketitle
+\section*{Problem 1}
+We answer the selected questions from the article \textit{Datasheets for Datasets} by Gebru et al. \cite{Gebru:2021}
+\subsection*{Motivation}
+\enum{
+\item The dataset was created to analyze HR functions, and optimize decision making related to employee management. The dataset can be used to analyze and predict attrition, employee performance. Monitoring diversity, compensation analysis and succession planning.
+\item The data was created by Fahad Rehman, a student at Abasyn University of Peshawar, Pakistan. He is a Data scientist and Graphic Designer by hobby, according to his github.com biography. 
+}
+
+\subsection*{Composition}
+\enum{
+\setcounter{enumi}{4}
+\item There is only one type of instance, which is the employee record. Meaning the dataset is structured around employees only. 
+\item There are 15000 employee records in total in the dataset.
+\setcounter{enumi}{7}
+\item Each employee record includes the following 10 attributes:
+\enuma{
+\item Satisfaction level
+\item last evaluation
+\item number project
+\item average monthly hours
+\item time spent with company
+\item work accidents
+\item if they are still there
+\item promotion within the last 5 years
+\item department
+\item salary
+}
+\item We could use "left" as the target label. Given all of the other parameters the model can predict whether or not the employee is going to leave or not.
+\setcounter{enumi}{14}
+\item  The data contains whether or not an employee has had a work accident which could in some cases be legally confidential. Such data could be considered sensitive, especially if it is linked to an individual. 
+\item We are not able to see any kind of offensive, insulting, threatening or anxiety inducing data in the dataset.
+\item The data does not identify and sub populations, there are not attributes for gender, age or ethnicities.
+\item Even though the data does not have a direct identification of the employees, it is possible to identify if the entry stands out and if the employee is known personally, such as works at this company, etc. But by finding the entry, it is likely that the data was known in order to find it anyways.
+\item The employee satisfaction and evaluation are personal to each employee, which makes it sensitive to share publicly. Salary and promotions are often private and sensitive, even though it is not under confidentiality laws. There is also work accidents which could be sensitive information
+}
+
+\subsection*{Collection process}
+\enum{
+\setcounter{enumi}{25}
+\item
+\item
+\item
+\item
+}
+
+\subsection*{Uses}
+\enum{
+\setcounter{enumi}{39}
+\item
+\item
+}
+\section*{Problem 2}
+
+\section*{Problem 3}
+
+\printbibliography
+
+\end{document}
